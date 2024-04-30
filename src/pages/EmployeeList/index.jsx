@@ -2,12 +2,15 @@ import { useEffect } from "react"
 import { useAtom } from 'jotai';
 import { employeeListAtom } from '../../atoms/employeeListAtom'
 import DataTable from 'react-data-table-component';
+import DataTableExtensions from "react-data-table-component-extensions";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import './style.css'
 
 
 const EmployeeList = () => {
     const [employees] = useAtom(employeeListAtom);
     
-
     useEffect(() => {
     }, [employees]    )
 
@@ -16,7 +19,7 @@ const EmployeeList = () => {
         { name: 'Last Name', selector: row => row.lastName , sortable: true },
         { name: 'Start Date', selector: row => row.startDate , sortable: true },
         { name: 'Department', selector: row => row.department, sortable: true },
-        { name: 'Date of Birth', selector: row => row.dateOfBirth, sortable: true },
+        { name: 'Birth Date', selector: row => row.dateOfBirth, sortable: true },
         { name: 'Street', selector: row => row.address.street, sortable: true },
         { name: 'City', selector: row => row.address.city , sortable: true },
         { name: 'State', selector: row => row.address.state , sortable: true },
@@ -26,14 +29,22 @@ const EmployeeList = () => {
     return(
         <div>
             {employees.length > 0 ? (
-                <DataTable
-                    title = 'Employee Data'
+            <>
+            <FontAwesomeIcon icon={faSearch} className="search-icon" />
+                <DataTableExtensions
                     columns={columns}
                     data={employees}
-                    pagination
-                    highlighOnHover
-                    responsive
-                />
+                    print={false}
+                    export={false}
+                >
+                    <DataTable
+                        title={<div className="centered-title">Current Employees</div>}
+                        pagination
+                        highlighOnHover
+                        responsive
+                    />
+                </DataTableExtensions>
+            </>
             ): (
                 <p>No employees created yet.</p>
             )}

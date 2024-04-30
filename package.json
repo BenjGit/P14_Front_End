@@ -6,22 +6,29 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "test": "vitest",
     "build": "vite build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d dist",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "ben-modal-component": "^1.0.4",
     "jotai": "^2.8.0",
     "react": "^18.2.0",
     "react-data-table-component": "^7.6.2",
+    "react-data-table-component-extensions": "^1.6.0",
     "react-dom": "^18.2.0",
-    "react-modal": "^3.16.1",
     "react-router": "^6.22.3",
     "react-router-dom": "^6.22.3"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.24.5",
+    "@babel/preset-react": "^7.24.1",
+    "@testing-library/react": "^15.0.5",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@vitejs/plugin-react": "^4.2.1",
@@ -30,6 +37,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
     "gh-pages": "^6.1.1",
-    "vite": "^5.2.0"
+    "vite": "^5.2.0",
+    "vitest": "^1.5.3"
   }
 }
