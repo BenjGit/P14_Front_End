@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+      "target": "esnext",
+      "jsx": "react",
+      "lib": ["esnext", "dom"],
+      "module": "node16",
+      "moduleResolution": "node16",
+      "strict": true,
+      "esModuleInterop": true
+    },
+    "include": [
+      "**/*.js",
+      "**/*.jsx",
+      "./vitest.setup.js"
+, "src/components/Link.tsx", "src/__tests__/CreateEmployee.test.jsx"    ],
+    "exclude": ["node_modules"],
+  }

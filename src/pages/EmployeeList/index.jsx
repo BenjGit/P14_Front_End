@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import { useAtom } from 'jotai';
+import React from 'react'
 import { employeeListAtom } from '../../atoms/employeeListAtom'
 import DataTable from 'react-data-table-component';
 import DataTableExtensions from "react-data-table-component-extensions";
@@ -19,7 +20,7 @@ const EmployeeList = () => {
         { name: 'Last Name', selector: row => row.lastName , sortable: true },
         { name: 'Start Date', selector: row => row.startDate , sortable: true },
         { name: 'Department', selector: row => row.department, sortable: true },
-        { name: 'Birth Date', selector: row => row.dateOfBirth, sortable: true },
+        { name: 'Birth Date', selector: row => row.birthDate, sortable: true },
         { name: 'Street', selector: row => row.address.street, sortable: true },
         { name: 'City', selector: row => row.address.city , sortable: true },
         { name: 'State', selector: row => row.address.state , sortable: true },

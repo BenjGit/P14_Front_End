@@ -1,6 +1,7 @@
 import { useAtom } from 'jotai';
-import { employeeListAtom } from '../../atoms/employeeListAtom';
-import states from '../../data/statesData';
+import React from 'react'
+import { employeeListAtom } from '../../atoms/employeeListAtom/index.jsx';
+import states from '../../data/statesData.jsx';
 import './style.css'
 import { Link } from 'react-router-dom';
 import { Modal } from 'ben-modal-component';
@@ -9,11 +10,20 @@ import { useState } from 'react';
 const CreateEmployee = () => {
     const [employeeList, setEmployeeList] = useAtom(employeeListAtom);
     const [showSuccessModal, setShowSuccessModal] = useState(false);
-    const [selectedDate, setSelectedDate] = useState('');
+    const [birthDate, setBirthDate] = useState('');
+    const [startDate, setStartDate] = useState('');
     const [error, setError] = useState('');
 
-    const handleDateChange = e => {
-      setSelectedDate(e.target.value);
+    const handleFocusDate = (e) => {
+        e.target.type = 'date';
+    };
+
+    const handleBlur = (e) => {
+        e.target.type = 'text';
+     };
+
+    const handleDateChange = (e, setDate) => {
+      setDate(e.target.value);
     };
 
     const validateForm = () => {
@@ -79,10 +89,12 @@ const CreateEmployee = () => {
                         <input type="text" id="last-name" placeholder="Last Name"/>
                         
                         <label htmlFor="birth-date" className="visually-hidden">Date of Birth</label>
-                        <input className="birth-date" id="birth-date" type="date" value={selectedDate} onChange={handleDateChange} />
+                        <input className="birth-date" id="birth-date" onFocus={handleFocusDate} onBlur={handleBlur} 
+                        value={birthDate} onChange={(e) => handleDateChange(e, setBirthDate)} placeholder='Birth Date'/>
                         
                         <label htmlFor="start-date" className="visually-hidden">Start Date</label>
-                        <input className="start-date" id="start-date" type="date" value={selectedDate} onChange={handleDateChange} />
+                        <input className="start-date" id="start-date" onFocus={handleFocusDate} onBlur={handleBlur} 
+                        value={startDate} onChange={(e) => handleDateChange(e, setStartDate)} placeholder='Start Date' />
 
                         <fieldset className="address">
                             <legend>Address</legend>
@@ -94,7 +106,7 @@ const CreateEmployee = () => {
                             <input id="city" type="text" placeholder="City"/>
 
                             <label htmlFor="state" className="visually-hidden">State</label>
-                            <select name="state" id="state" placeholder="State" defaultValue="">
+                            <select name="state" id="state" placeholder="State" defaultValue="" >
                                 <option className="option-placeholder" value="" disabled>Select state</option>
                                 {states.map((state) => (
                                     <option key={state.abbreviation} value={state.abbreviation}>{state.name}</option>
